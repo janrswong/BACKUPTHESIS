@@ -8,6 +8,7 @@ import plotly.express as px
 from st_aggrid import GridOptionsBuilder, AgGrid
 import plotly.graph_objects as go
 from PIL import Image
+import numpy as np
 
 
 def displayWTI():
@@ -124,9 +125,18 @@ def displayWTI():
             AgGrid(file, key='dailyMetric', width='100%', fit_columns_on_grid_load=True,
                    enable_enterprise_modules=True, theme='streamlit', gridOptions=page)
 
-    # # TABLES aaaaaaa
+    # # # TABLES
     # sss = pd.read_csv('WTI/CopBook1.csv')
+    # sss = sss.replace(np.nan, '', regex=True)
+    # sss.rename(columns={'Unnamed: 0': ' '}, inplace=True)
+
+    # def highlight_max(x):
+    #     return ['font-weight: bold' if v == x.loc[0] else ''
+    #             for v in x]
+    # sss = sss.style.apply(highlight_max)
     # st.table(sss)
+
+    # BRENT WTI
     st.header("Brent vs. WTI Accuracy Metrics & Best Models")
 
     arima = Image.open('assets/images/ARIMA2.png')
