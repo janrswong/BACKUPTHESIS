@@ -2,7 +2,6 @@ import streamlit as st
 from PIL import Image
 import base64
 from style import add_logo
-# function play gif
 
 
 def gif(location):
@@ -32,9 +31,8 @@ footer{visibility:hidden;}
 st.set_page_config(page_title="Predicta.oil | About",
                    layout='wide', page_icon="⛽")
 st.markdown(hide_menu_style, unsafe_allow_html=True)
-st.title('About the Research')
 add_logo()
-
+st.title('About the Research')
 # a. how the thing works
 st.header('How It Works')
 st.markdown('<strong>Welcome!</strong> This is a fully interactive, multi-page web app through the Python library Streamlit that allows users to explore the same models used in the study. Aside from learning about study findings, play with parameters, create your own models, conduct your own comparisions and make your own analyses! Read further to learn how to use the <em>Explore</em> and <em>Make Your Own Model</em> tabs.', unsafe_allow_html=True)
@@ -81,7 +79,7 @@ st.image(accuracy, caption='Visualization')
 
 # b. snippets of the paper
 
-st.markdown('<h1>Conclusions and Recommendations</h1> <p>The full documentation of this project can be accessed through this link: [] </p><h2>Conclusions</h2> <h3>Price Movement Volatility Trends</h3> <p> Price movement volatility refers to how much a set of prices changes over time and how erratic those changes are. In crude oil prices, unless there are spikes or drops due to unforeseen or anomalous circumstances, these trends tend to stray away from erratic highs and lows especially over short periods of time. It must be reiterated that this study does not take into account these anomalies, but focuses on what would be the natural, steady trend of Brent crude oil prices. That being said, the conduction of the study simply paints a clear picture of the behavior of asset prices and how the value of volatility changes over spans of time. </p>  <p> In order to quantify volatility, the standard deviation between the actual close prices (prices from the yfinance dataset) and the predicted prices are computed. From this part of the experiment, it was found that volatility is more likely to be present over longer periods of time. Additionally, it can be observed that volatility is also contingent on anomalous or external factors.</p> <p>It was found that Brent crude oil in particular shows the highest volatility trend over quarterly prices.</p>', unsafe_allow_html=True)
+st.markdown('<h1>Conclusions and Recommendations</h1> <p>The full documentation of this project can be accessed through this link: [https://bit.ly/PredictaPaper] </p><h2>Conclusions</h2> <h3>Price Movement Volatility Trends</h3> <p> Price movement volatility refers to how much a set of prices changes over time and how erratic those changes are. In crude oil prices, unless there are spikes or drops due to unforeseen or anomalous circumstances, these trends tend to stray away from erratic highs and lows especially over short periods of time. It must be reiterated that this study does not take into account these anomalies, but focuses on what would be the natural, steady trend of Brent crude oil prices. That being said, the conduction of the study simply paints a clear picture of the behavior of asset prices and how the value of volatility changes over spans of time. </p>  <p> In order to quantify volatility, the standard deviation between the actual close prices (prices from the yfinance dataset) and the predicted prices are computed. From this part of the experiment, it was found that volatility is more likely to be present over longer periods of time. Additionally, it can be observed that volatility is also contingent on anomalous or external factors.</p> <p>It was found that Brent crude oil in particular shows the highest volatility trend over quarterly prices.</p>', unsafe_allow_html=True)
 
 st.markdown('<h3>Model Accuracy</h3> <p> Model accuracy is quantified through the use of accuracy metrics, specifically MAPE and MSE. These subsections are partitioned in accordance to the time interval of the raw data used, that being daily, weekly, monthly, and quarterly close prices.</p> <h4>Daily Interval Data</h4> <p>It was found that 96 of 102 or 94.12% ARIMA models and 3 of 3 or 100.00% LSTM models were able to attain a MAPE percentage below 10% and 96 of 102 or 94.12% ARIMA models and 3 of 3 or 100.00% LSTM models were able to attain a MSE percentage close to 0 or less than 0.1 using daily interval data.</p> <h4>Weekly Interval Data</h4> <p>It was found that 42 of 48 or 87.50% ARIMA models and 0 of 3 or 0.00% LSTM models were able to attain a MAPE percentage below 10% and 22 of 48 or 45.83%  ARIMA models and 0 of 3 or 0.00% LSTM models were able to attain a MSE percentage close to 0 or less than 0.1 using weekly interval data.</p> <h4>Monthly Interval Data</h4> <p>It was found that 62 of 160 or 38.75% ARIMA model and 1 of 3 or 33.33% LSTM models were able to attain a MAPE percentage below 10% and 0 of 160 or 0.00% ARIMA models and 0 of 3 or 0.00% LSTM models were able to attain a MSE percentage close to 0 or less than 0.1 using monthly interval data. </p> <h4>Quarterly Interval Data</h4> <p>It was found that 0 of 77 or 0.00% ARIMA models and 0 of 3 or 0.00% LSTM models were able to attain a MAPE percentage below 10% and 0 of 77 or 0.00%  ARIMA models and 0 of 3 or 0.00% LSTM models were able to attain a MSE percentage close to 0 or less than 0.1 using quarterly interval data.</p>', unsafe_allow_html=True)
 

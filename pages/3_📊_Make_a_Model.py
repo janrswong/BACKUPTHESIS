@@ -5,7 +5,7 @@ import yfinance as yf
 import matplotlib.pyplot as plt
 import numpy as np
 import plotly.express as px
-import time
+import time 
 from statsmodels.tsa.arima_model import ARIMA
 from sklearn.metrics import mean_absolute_percentage_error, mean_squared_error, mean_absolute_error
 import tensorflow as tf
@@ -25,16 +25,11 @@ hide_menu_style = """
 footer{visibility:hidden;}
 </style>
 """
-
-
-
 # page expands to full width
-st.set_page_config(page_title="Predicta.oil | Make a Model",
-                   layout='wide', page_icon="⛽")
+st.set_page_config(page_title="Predicta.oil | Make a Model", layout='wide', page_icon="⛽")
 st.markdown(hide_menu_style, unsafe_allow_html=True)
-add_logo()
 # ag grid pagination
-
+add_logo()
 
 def pagination(df):
     gb = GridOptionsBuilder.from_dataframe(df)
@@ -107,6 +102,7 @@ st.download_button(
 )
 
 
+
 # graph visualization
 st.header("Visualizations")
 
@@ -132,7 +128,6 @@ def mse_eval(test, predictions):
 def mape_eval(test, predictions):
     return mean_absolute_percentage_error(test, predictions)
 
-
 def evaluate_lstm_model(split):
     global lstmModel
     WINDOW_SIZE = 3
@@ -143,7 +138,8 @@ def evaluate_lstm_model(split):
         df.shape[0]*split)], df.index[int(df.shape[0]*split)+WINDOW_SIZE:]
     X_train1, y_train1 = X1[:int(df.shape[0]*split)
                             ], y1[:int(df.shape[0]*split)]
-    X_test1, y_test1 = X1[int(df.shape[0]*split):], y1[int(df.shape[0]*split):]
+    X_test1, y_test1 = X1[int(df.shape[0]*split)
+                                :], y1[int(df.shape[0]*split):]
 
     # lstm model
     with st.spinner('LSTM Model...'):
@@ -176,8 +172,6 @@ def evaluate_lstm_model(split):
         print(mape)
 
     return test_results, mse, mape
-
-
 global results
 
 
