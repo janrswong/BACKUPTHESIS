@@ -5,7 +5,7 @@ import yfinance as yf
 import matplotlib.pyplot as plt
 import numpy as np
 import plotly.express as px
-import time 
+import time
 from statsmodels.tsa.arima_model import ARIMA
 from sklearn.metrics import mean_absolute_percentage_error, mean_squared_error, mean_absolute_error
 import tensorflow as tf
@@ -26,10 +26,12 @@ footer{visibility:hidden;}
 </style>
 """
 # page expands to full width
-st.set_page_config(page_title="Predicta.oil | Make a Model", layout='wide', page_icon="⛽")
+st.set_page_config(page_title="Predicta.oil | Make a Model",
+                   layout='wide', page_icon="⛽")
 st.markdown(hide_menu_style, unsafe_allow_html=True)
 # ag grid pagination
 add_logo()
+
 
 def pagination(df):
     gb = GridOptionsBuilder.from_dataframe(df)
@@ -42,8 +44,8 @@ def pagination(df):
 st.title("Make a Model")
 
 # ARIMA PARAMETERS
-pValue = 4
-dValue = 1
+pValue = 1
+dValue = 0
 qValue = 0
 
 # show raw data
@@ -53,7 +55,7 @@ st.header("Raw Data")
 with st.sidebar.header('Set Data Split'):
   # PARAMETERS min,max,default,skip
     trainData = st.sidebar.slider(
-        'Data split ratio (% for Training Set)', 10, 90, 80, 5)
+        'Data split ratio (% for Training Set)', 10, 90, 50, 5)
     # ARIMA PARAMETERS
     pValue = st.sidebar.number_input('P-value:', 0, 100, pValue)
     st.sidebar.write('The current p-Value is ', pValue)
@@ -67,7 +69,7 @@ with st.sidebar.header('Set Data Split'):
 
 # select time interval
 interv = st.select_slider('Select Time Series Data Interval for Prediction', options=[
-                          'Weekly', 'Monthly', 'Quarterly', 'Daily'])
+                          'Daily', 'Weekly', 'Monthly', 'Quarterly'], value='Weekly')
 
 
 @st.cache
@@ -102,7 +104,6 @@ st.download_button(
 )
 
 
-
 # graph visualization
 st.header("Visualizations")
 
@@ -128,6 +129,7 @@ def mse_eval(test, predictions):
 def mape_eval(test, predictions):
     return mean_absolute_percentage_error(test, predictions)
 
+
 def evaluate_lstm_model(split):
     global lstmModel
     WINDOW_SIZE = 3
@@ -138,8 +140,7 @@ def evaluate_lstm_model(split):
         df.shape[0]*split)], df.index[int(df.shape[0]*split)+WINDOW_SIZE:]
     X_train1, y_train1 = X1[:int(df.shape[0]*split)
                             ], y1[:int(df.shape[0]*split)]
-    X_test1, y_test1 = X1[int(df.shape[0]*split)
-                                :], y1[int(df.shape[0]*split):]
+    X_test1, y_test1 = X1[int(df.shape[0]*split):], y1[int(df.shape[0]*split):]
 
     # lstm model
     with st.spinner('LSTM Model...'):
@@ -172,6 +173,8 @@ def evaluate_lstm_model(split):
         print(mape)
 
     return test_results, mse, mape
+
+
 global results
 
 
